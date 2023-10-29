@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Validasi Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h2>Formulir Validasi</h2>
+    <form id="myForm" onsubmit="return validateForm()">
+      <label for="nama">Nama:</label>
+      <input type="text" id="nama" name="nama" /><br />
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" /><br />
+
+      <label for="umur">Umur:</label>
+      <input type="text" id="umur" name="umur" /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+
+    <p id="error-message"></p>
+
+    <script>
+      function validateForm() {
+        var nama = document.forms["myForm"]["nama"].value;
+        var email = document.forms["myForm"]["email"].value;
+        var umur = document.forms["myForm"]["umur"].value;
+
+        var errorMessage = "";
+
+        if (nama === "") {
+          errorMessage += "Nama harus diisi.\n";
+        }
+
+        if (email === "") {
+          errorMessage += "Email harus diisi.\n";
+        } else {
+          var emailPattern = /^\w+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/;
+          if (!email.match(emailPattern)) {
+            errorMessage += "Email tidak valid.\n";
+          }
+        }
+
+        if (umur === "") {
+          errorMessage += "Umur harus diisi.\n";
+        } else {
+          var umurValue = parseInt(umur);
+          if (isNaN(umurValue) || umurValue < 1 || umurValue > 100) {
+            errorMessage += "Umur harus berupa angka antara 1 dan 100.\n";
+          }
+        }
+
+        if (errorMessage !== "") {
+          document.getElementById("error-message").textContent = errorMessage;
+          return false;
+        }
+
+        return true;
+      }
+    </script>
+  </body>
+</html>
