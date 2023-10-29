@@ -1,4 +1,6 @@
-## lab5web
+# Nama : Galva Al Godzali
+# kelas : TI.22.A.3
+# NIM : 312210356
 
 ## Praktikum
 Buat dokumen html lab5_javascript.html
@@ -260,3 +262,128 @@ Pilihan checkbox yang akan menghasilkan perhitungan otomatis
 ![b2](https://github.com/galvaal/Lab5Web/assets/115516730/eedf25c6-4127-4d4c-ad19-0d5bf03075ee)
 
 
+## Pertanyaan dan Tugas
+#### 1. Buat script untuk melakukan validasi pada isian form.
+
+html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Validasi Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h2>Formulir Validasi</h2>
+    <form id="myForm" onsubmit="return validateForm()">
+      <label for="nama">Nama:</label>
+      <input type="text" id="nama" name="nama" /><br />
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" /><br />
+
+      <label for="umur">Umur:</label>
+      <input type="text" id="umur" name="umur" /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+
+    <p id="error-message"></p>
+
+    <script>
+      function validateForm() {
+        var nama = document.forms["myForm"]["nama"].value;
+        var email = document.forms["myForm"]["email"].value;
+        var umur = document.forms["myForm"]["umur"].value;
+
+        var errorMessage = "";
+
+        if (nama === "") {
+          errorMessage += "Nama harus diisi.\n";
+        }
+
+        if (email === "") {
+          errorMessage += "Email harus diisi.\n";
+        } else {
+          var emailPattern = /^\w+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/;
+          if (!email.match(emailPattern)) {
+            errorMessage += "Email tidak valid.\n";
+          }
+        }
+
+        if (umur === "") {
+          errorMessage += "Umur harus diisi.\n";
+        } else {
+          var umurValue = parseInt(umur);
+          if (isNaN(umurValue) || umurValue < 1 || umurValue > 100) {
+            errorMessage += "Umur harus berupa angka antara 1 dan 100.\n";
+          }
+        }
+
+        if (errorMessage !== "") {
+          document.getElementById("error-message").textContent = errorMessage;
+          return false;
+        }
+
+        return true;
+      }
+    </script>
+  </body>
+</html>
+
+
+css
+# CSS untuk styling formulir 
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+     }
+
+    h2 {
+    text-align: center;
+        }
+    
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    input[type="submit"] {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    #error-message {
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+![b4](https://github.com/galvaal/Lab5Web/assets/115516730/b130af24-49e4-49fd-993d-7e508d254ded)
+
+![b5](https://github.com/galvaal/Lab5Web/assets/115516730/9cca7f9a-cb06-4e6c-a37a-1d5d9c7c9470)
